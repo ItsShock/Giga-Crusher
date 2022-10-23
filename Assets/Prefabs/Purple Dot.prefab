@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -3817556456834650256}
   - component: {fileID: -701826125589281512}
   m_Layer: 0
-  m_Name: Grey Dot
+  m_Name: Purple Dot
   m_TagString: Grey Dot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 385067dbff28b7d419eb36198d7f4da6, type: 3}
-  m_Color: {r: 0.66821676, g: 0.6698113, b: 0.66665184, a: 1}
+  m_Color: {r: 0.5829548, g: 0.01375042, b: 0.9716981, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -116,7 +116,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   column: 0
   row: 0
+  previousColumn: 0
+  previousRow: 0
   targetX: 0
   targetY: 0
   isMatched: 0
   swipeAngle: 0
+  swipeResist: 1
