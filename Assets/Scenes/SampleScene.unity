@@ -159,7 +159,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -265,6 +265,7 @@ MonoBehaviour:
   - {fileID: 5385733507426370799, guid: e1046c2f057a401419d1c79ba79b53d2, type: 3}
   - {fileID: 1656275754477113780, guid: 90ddaa49507682a4ca2d0f86806b0b31, type: 3}
   - {fileID: 4799244285285355953, guid: 8130cb9d4930df246a2a26e8280682aa, type: 3}
+  destroyEffect: {fileID: 8689360309261746383, guid: 212b046b11ed4194d88c657d7225c886, type: 3}
 --- !u!1 &1304066415
 GameObject:
   m_ObjectHideFlags: 0
