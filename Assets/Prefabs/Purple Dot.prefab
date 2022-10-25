@@ -123,3 +123,7 @@ MonoBehaviour:
   isMatched: 0
   swipeAngle: 0
   swipeResist: 1
+  isColumnBomb: 0
+  isRowBomb: 0
+  rowArrow: {fileID: 105939791235574273, guid: ddf2c3e45c722c44dbd6810fb4549663, type: 3}
+  columnArrow: {fileID: 7109557290145323249, guid: 5ef338c86169c084180a4495b36d2d57, type: 3}
