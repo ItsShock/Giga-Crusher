@@ -147,4 +147,34 @@ public class FindMatches : MonoBehaviour
         }
         return dots;
     }
+
+    public void CheckBombs()
+    {
+        //Did the player move?
+        if(board.currentDot != null)
+        {
+            //is the piece they moved matched?
+            if(board.currentDot.isMatched)
+            {
+                //make it unmatched
+                board.currentDot.isMatched = false;
+                //Decided what kind of bomb to make
+                int typeOfBomb = Random.Range(0, 100);
+                if(typeOfBomb < 50)
+                {
+                    //make row bomb
+                    board.currentDot.MakeRowBomb();
+                }else if(typeOfBomb >= 50)
+                {
+                    //make a column bomb
+                    board.currentDot.MakeColumnBomb();
+                }
+            }
+            //Is the other piece matched
+            else if(board.currentDot.otherDot != null)
+            {
+
+            }
+        }
+    }
 }
