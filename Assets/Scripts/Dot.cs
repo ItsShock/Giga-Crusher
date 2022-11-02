@@ -170,12 +170,12 @@ public class Dot : MonoBehaviour
     {
         if(Mathf.Abs(finalTouchPosition.y - firstTouchPosition.y) > swipeResist || Mathf.Abs(finalTouchPosition.x - firstTouchPosition.x) > swipeResist) 
         {
-            swipeAngle = Mathf.Atan2(finalTouchPosition.y - firstTouchPosition.y, finalTouchPosition.x - firstTouchPosition.x) * 180 / Mathf.PI;
-            MovePieces();
             if(otherDot != null)
             {
                 board.currentState = GameState.wait;
             }
+            swipeAngle = Mathf.Atan2(finalTouchPosition.y - firstTouchPosition.y, finalTouchPosition.x - firstTouchPosition.x) * 180 / Mathf.PI;
+            MovePieces();
             board.currentDot = this;
         }
         else
@@ -194,6 +194,7 @@ public class Dot : MonoBehaviour
             previousColumn = column;
             otherDot.GetComponent<Dot>().column -= 1;
             column += 1;
+            StartCoroutine(CheckMoveCo());
         }
         else if (swipeAngle > 45 && swipeAngle <= 135 && row < board.heigth-1)
         {
@@ -203,6 +204,7 @@ public class Dot : MonoBehaviour
             previousColumn = column;
             otherDot.GetComponent<Dot>().row -= 1;
             row += 1;
+            StartCoroutine(CheckMoveCo());
         }
         else if ((swipeAngle > 135 || swipeAngle <= -135) && column > 0)
         {
@@ -212,6 +214,7 @@ public class Dot : MonoBehaviour
             previousColumn = column;
             otherDot.GetComponent<Dot>().column += 1;
             column -= 1;
+            StartCoroutine(CheckMoveCo());
         }
         else if (swipeAngle < -45 && swipeAngle >= -135 && row > 0)
         {
@@ -221,8 +224,11 @@ public class Dot : MonoBehaviour
             previousColumn = column;
             otherDot.GetComponent<Dot>().row += 1;
             row -= 1;
+            StartCoroutine(CheckMoveCo());
         }
-        StartCoroutine(CheckMoveCo());
+        board.currentState = GameState.move;
+        
+        
     }
 
     void FindMatches()
