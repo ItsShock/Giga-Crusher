@@ -259,7 +259,37 @@ public class Board : MonoBehaviour
             }
         }
         findMatches.currentMatches.Clear();
-        StartCoroutine(DecreaseRowCo());
+        StartCoroutine(DecreaseRowCo2());
+    }
+
+    private IEnumerator DecreaseRowCo2()
+    {
+        for(int i = 0; i < width; i++)
+        {
+            for(int j = 0; j < heigth; j++)
+            {
+                // if te current spot isn't blank and is empty..
+                if(!blankSpaces[i,j] && allDots[i,j] == null)
+                {
+                    // loop from this space above to the top of the column
+                    for(int k = j + 1; k < heigth; k++)
+                    {
+                        // if a dot is found
+                        if(allDots[i,k] != null)
+                        {
+                            // move that dot to this empty space
+                            allDots[i, k].GetComponent<Dot>().row = j;
+                            //set that spot to be null
+                            allDots[i, k] = null;
+                            // break out of the loop
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        yield return new WaitForSeconds(.4f);
+        StartCoroutine(FillBoardCo());
     }
 
     private IEnumerator DecreaseRowCo()
@@ -291,7 +321,7 @@ public class Board : MonoBehaviour
         {
             for(int j = 0; j < heigth; j++)
             {
-                if(allDots[i,j] == null)
+                if(allDots[i,j] == null && !blankSpaces[i,j])
                 {
                     Vector2 tempPosition = new Vector2(i, j + offSet);
                     int dotToUse = Random.Range(0, dots.Length);
