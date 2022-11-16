@@ -30,15 +30,18 @@ public class Board : MonoBehaviour
     public int heigth;
     public int offSet;
     public GameObject tilePrefab;
+    public GameObject breakableTilePrefab;
     public GameObject[] dots;
     public GameObject destroyParticle;
     public TileType[] boardLayout;
     private bool[,] blankSpaces;
+    private BackgroundTile[,] breakableTiles;
     public GameObject[,] allDots;
     public Dot currentDot;
     private FindMatches findMatches;
     void Start()
     {
+        breakableTiles = new BackgroundTile[width, heigth];
         findMatches = FindObjectOfType<FindMatches>();
         blankSpaces = new bool[width, heigth];
         allDots = new GameObject[width, heigth];
@@ -56,9 +59,26 @@ public class Board : MonoBehaviour
         }
     }
 
+    public void GenerateBreakableTiles()
+    {
+        //Look at all the tiles in the layout
+        for(int i = 0; i < boardLayout.Length; i++)
+        {
+            //if a tile is a 'jelly' tile
+            if(boardLayout[i].tileKind == TileKind.Brakable)
+            {
+                //Create a 'jelly' tile at that position
+                Vector2 tempPosition = new Vector2(boardLayout[i].x, boardLayout[i].y);
+                GameObject tile = Instantiate(breakableTilePrefab, tempPosition, Quaternion.identity);
+                breakableTiles[boardLayout[i].x, boardLayout[i].y] = tile.GetComponent<BackgroundTile>();
+            }
+        }
+    }
+
     private void SetUp()
     {
         GenerateBlankSpaces();
+        GenerateBreakableTiles();
         for(int i = 0; i < width; i++)
         {
             for(int j = 0; j< heigth; j++)
@@ -239,6 +259,17 @@ public class Board : MonoBehaviour
                 CheckToMakeBombs();
             }
             
+            //Does a tile need to break?
+            if(breakableTiles[column,row]!=null)
+            {
+                //if it does give one dmg
+                breakableTiles[column, row].TakeDamage(1);
+                if(breakableTiles[column,row].hitPoints <= 0)
+                {
+                    breakableTiles[column, row] = null;
+                }
+            }
+
             GameObject particle = Instantiate(destroyParticle, allDots[column, row].transform.position, Quaternion.identity);
             Destroy(particle, .3f);
             Destroy(allDots[column, row]);
