@@ -268,8 +268,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 1
-  width: 7
-  heigth: 10
+  width: 5
+  heigth: 5
   offSet: 10
   tilePrefab: {fileID: 7701898551299278847, guid: bb536e0cd7566e94fb55a10c2a7c3351, type: 3}
   breakableTilePrefab: {fileID: 4406092418094820576, guid: d10139acc25abf642a4cd24345c77529, type: 3}
@@ -283,43 +283,7 @@ MonoBehaviour:
   - {fileID: 1656275754477113780, guid: 90ddaa49507682a4ca2d0f86806b0b31, type: 3}
   - {fileID: 4799244285285355953, guid: 8130cb9d4930df246a2a26e8280682aa, type: 3}
   destroyParticle: {fileID: 8689360309261746383, guid: 212b046b11ed4194d88c657d7225c886, type: 3}
-  boardLayout:
-  - x: 0
-    y: 0
-    tileKind: 1
-  - x: 6
-    y: 9
-    tileKind: 1
-  - x: 6
-    y: 0
-    tileKind: 1
-  - x: 0
-    y: 9
-    tileKind: 1
-  - x: 4
-    y: 4
-    tileKind: 1
-  - x: 1
-    y: 9
-    tileKind: 1
-  - x: 2
-    y: 6
-    tileKind: 1
-  - x: 1
-    y: 4
-    tileKind: 0
-  - x: 1
-    y: 5
-    tileKind: 0
-  - x: 1
-    y: 6
-    tileKind: 0
-  - x: 1
-    y: 7
-    tileKind: 0
-  - x: 1
-    y: 8
-    tileKind: 0
+  boardLayout: []
   currentDot: {fileID: 0}
 --- !u!1 &1304066415
 GameObject:
