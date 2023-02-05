@@ -400,6 +400,7 @@ public class Board : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         if(IsDeadLocked())
         {
+            ShuffleBoard();
             Debug.Log("DeadLocked!!");
         }
         currentState = GameState.move;
@@ -494,5 +495,58 @@ public class Board : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private void ShuffleBoard()
+    {
+        //Create a list of game objects
+        List<GameObject> newBoard = new List<GameObject>();
+        //Add every piece to this list
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < heigth; j++)
+            {
+                if (allDots[i, j] != null)
+                {
+                    newBoard.Add(allDots[i, j]);
+                }
+            }
+        }
+        //for every spot on the board...
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < heigth; j++)
+            {
+                //if this spot shouldn't be blank
+                if (!blankSpaces[i,j])
+                {
+                    //Pick a random number
+                    int pieceToUse = Random.Range(0, newBoard.Count);
+                    
+                    //Assign the column to the piece
+                    int maxIterations = 0;
+                    while (MatchesAt(i, j, newBoard[pieceToUse]) && maxIterations < 100)
+                    {
+                        pieceToUse = Random.Range(0, newBoard.Count);
+                        maxIterations++;
+                        Debug.Log(maxIterations);
+                    }
+                    //Make a container for the piece
+                    Dot piece = newBoard[pieceToUse].GetComponent<Dot>();
+                    maxIterations = 0;
+                    piece.column = i;
+                    piece.row = j;
+                    //Fill in the dots array with this new piece
+                    allDots[i, j] = newBoard[pieceToUse];
+                    //Remove it from the list
+                    newBoard.Remove(newBoard[pieceToUse]);
+                }
+            }
+        }
+        //Check if it's still deadlocked
+        if(IsDeadLocked())
+        {
+            ShuffleBoard();
+        }
     }
 }
