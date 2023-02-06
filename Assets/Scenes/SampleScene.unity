@@ -222,7 +222,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraOffset: -10
   aspectRatio: 0.625
-  padding: 2
+  padding: 3
+  yOffset: 0.5
 --- !u!1 &1179703066
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,6 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1179703067}
   - component: {fileID: 1179703068}
+  - component: {fileID: 1179703069}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -285,6 +287,21 @@ MonoBehaviour:
   destroyParticle: {fileID: 8689360309261746383, guid: 212b046b11ed4194d88c657d7225c886, type: 3}
   boardLayout: []
   currentDot: {fileID: 0}
+--- !u!114 &1179703069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179703066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d15dce88d05ba14d8325ba3da48db52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hintDelay: 3
+  hintParticle: {fileID: 384238299051057098, guid: 85b6619267778c24095f3038516d3be4, type: 3}
+  currentHint: {fileID: 0}
 --- !u!1 &1304066415
 GameObject:
   m_ObjectHideFlags: 0
