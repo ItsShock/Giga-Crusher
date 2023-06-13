@@ -93,7 +93,7 @@ public class FindMatches : MonoBehaviour
         yield return new WaitForSeconds(.2f);
         for(int i = 0; i < board.width; i++)
         {
-            for (int j = 0; j < board.heigth; j++)
+            for (int j = 0; j < board.height; j++)
             {
                 GameObject currentDot = board.allDots[i, j];
                 
@@ -123,7 +123,7 @@ public class FindMatches : MonoBehaviour
                         }
                     }
 
-                    if (j > 0 && j < board.heigth - 1)
+                    if (j > 0 && j < board.height - 1)
                     {
                         GameObject upDot = board.allDots[i, j + 1];
                         
@@ -156,7 +156,7 @@ public class FindMatches : MonoBehaviour
     {
         for(int i = 0; i < board.width; i++)
         {
-            for(int j = 0; j < board.heigth; j++)
+            for(int j = 0; j < board.height; j++)
             {
                 //Check if that piece exist
                 if(board.allDots[i, j] != null)
@@ -180,10 +180,14 @@ public class FindMatches : MonoBehaviour
             for(int j = row - 1; j <= row + 1; j++)
             {
                 //Check if the piece is inside the board
-                if(i >= 0 && i < board.width && j >= 0 && j < board.heigth)
+                if(i >= 0 && i < board.width && j >= 0 && j < board.height)
                 {
-                    dots.Add(board.allDots[i, j]);
-                    board.allDots[i, j].GetComponent<Dot>().isMatched = true;
+                    if(board.allDots[i,j] != null)
+                    {
+                        dots.Add(board.allDots[i, j]);
+                        board.allDots[i, j].GetComponent<Dot>().isMatched = true;
+                    }
+                    
                 }
             }
         }
@@ -193,7 +197,7 @@ public class FindMatches : MonoBehaviour
     List<GameObject> GetColumnPieces(int column)
     {
         List<GameObject> dots = new List<GameObject>();
-        for(int i = 0; i < board.heigth; i++)
+        for(int i = 0; i < board.height; i++)
         {
             if(board.allDots[column, i] != null)
             {

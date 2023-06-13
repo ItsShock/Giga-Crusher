@@ -222,7 +222,7 @@ public class Dot : MonoBehaviour
             StartCoroutine(CheckMoveCo());*/
             MovePiecesActual(Vector2.right);
         }
-        else if (swipeAngle > 45 && swipeAngle <= 135 && row < board.heigth-1)
+        else if (swipeAngle > 45 && swipeAngle <= 135 && row < board.height-1)
         {
             // Up swipe
             /*
@@ -282,7 +282,7 @@ public class Dot : MonoBehaviour
                 }
             }
         }
-        if (row > 0 && row < board.heigth - 1)
+        if (row > 0 && row < board.height - 1)
         {
             GameObject upDot1 = board.allDots[column, row + 1];
             GameObject downDot1 = board.allDots[column, row - 1];
@@ -318,6 +318,7 @@ public class Dot : MonoBehaviour
         isColorBomb = true;
         GameObject color = Instantiate(colorBomb, transform.position, Quaternion.identity);
         color.transform.parent = this.transform;
+        this.gameObject.tag = "Color";
     }
 
     public void MakeAdjacentBomb()

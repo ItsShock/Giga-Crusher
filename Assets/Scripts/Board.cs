@@ -27,7 +27,7 @@ public class Board : MonoBehaviour
 {
     public GameState currentState = GameState.move;
     public int width;
-    public int heigth;
+    public int height;
     public int offSet;
     public GameObject tilePrefab;
     public GameObject breakableTilePrefab;
@@ -42,16 +42,18 @@ public class Board : MonoBehaviour
     public int basePieceValue = 20;
     private int streakValue = 1;
     private ScoreManager scoreManager;
+    public float refilDelay = 0.5f;
     void Start()
     {
         scoreManager = FindObjectOfType<ScoreManager>();
-        breakableTiles = new BackgroundTile[width, heigth];
+        breakableTiles = new BackgroundTile[width, height];
         findMatches = FindObjectOfType<FindMatches>();
-        blankSpaces = new bool[width, heigth];
-        allDots = new GameObject[width, heigth];
+        blankSpaces = new bool[width, height];
+        allDots = new GameObject[width, height];
         SetUp();
     }
 
+    /*
     public void GenerateBlankSpaces()
     {
         for(int i = 0; i < boardLayout.Length; i++)
@@ -62,6 +64,19 @@ public class Board : MonoBehaviour
             }
         }
     }
+    */
+
+    public void GenerateBlankSpaces()
+    {
+        for (int i = 0; i < boardLayout.Length; i++)
+        {
+            if (boardLayout[i].tileKind == TileKind.Blank)
+            {
+                blankSpaces[boardLayout[i].x, boardLayout[i].y] = true;
+            }
+        }
+    }
+
 
     public void GenerateBreakableTiles()
     {
@@ -85,7 +100,7 @@ public class Board : MonoBehaviour
         GenerateBreakableTiles();
         for(int i = 0; i < width; i++)
         {
-            for(int j = 0; j< heigth; j++)
+            for(int j = 0; j< height; j++)
             {
                 if(!blankSpaces[i,j] )
                 {
@@ -287,7 +302,7 @@ public class Board : MonoBehaviour
     {
         for (int i = 0; i < width; i++) 
         {
-            for(int j = 0; j < heigth; j++)
+            for(int j = 0; j < height; j++)
             {
                 if(allDots[i,j] != null)
                 {
@@ -303,13 +318,13 @@ public class Board : MonoBehaviour
     {
         for(int i = 0; i < width; i++)
         {
-            for(int j = 0; j < heigth; j++)
+            for(int j = 0; j < height; j++)
             {
                 // if te current spot isn't blank and is empty..
                 if(!blankSpaces[i,j] && allDots[i,j] == null)
                 {
                     // loop from this space above to the top of the column
-                    for(int k = j + 1; k < heigth; k++)
+                    for(int k = j + 1; k < height; k++)
                     {
                         // if a dot is found
                         if(allDots[i,k] != null)
@@ -325,7 +340,7 @@ public class Board : MonoBehaviour
                 }
             }
         }
-        yield return new WaitForSeconds(.4f);
+        yield return new WaitForSeconds(refilDelay * 0.5f);
         StartCoroutine(FillBoardCo());
     }
 
@@ -334,7 +349,7 @@ public class Board : MonoBehaviour
         int nullCount = 0;
         for(int i = 0; i < width; i++)
         {
-            for(int j = 0; j < heigth; j++)
+            for(int j = 0; j < height; j++)
             {
                 if(allDots[i,j] == null)
                 {
@@ -347,7 +362,7 @@ public class Board : MonoBehaviour
             }
             nullCount = 0;
         }
-        yield return new WaitForSeconds(.4f);
+        yield return new WaitForSeconds(refilDelay * 0.5f);
         StartCoroutine(FillBoardCo());
 
     }
@@ -356,12 +371,21 @@ public class Board : MonoBehaviour
     {
         for(int i = 0; i < width; i++)
         {
-            for(int j = 0; j < heigth; j++)
+            for(int j = 0; j < height; j++)
             {
-                if(allDots[i,j] == null && !blankSpaces[i,j])
+                if (allDots[i, j] == null && !blankSpaces[i, j])
                 {
                     Vector2 tempPosition = new Vector2(i, j + offSet);
                     int dotToUse = Random.Range(0, dots.Length);
+                    int maxIterations = 0;
+
+                    while (MatchesAt(i, j, dots[dotToUse]) && maxIterations < 100)
+                    {
+                        maxIterations++;
+                        dotToUse = Random.Range(0, dots.Length);
+                    }
+
+                    maxIterations = 0;
                     GameObject piece = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
                     allDots[i, j] = piece;
                     piece.transform.parent = this.transform;
@@ -377,7 +401,7 @@ public class Board : MonoBehaviour
     {
         for (int i = 0; i < width; i++)
         {
-            for (int j = 0; i < heigth; j++)
+            for (int j = 0; i < height; j++)
             {
                 if(allDots[i,j] != null)
                 {
@@ -394,22 +418,23 @@ public class Board : MonoBehaviour
     private IEnumerator FillBoardCo()
     {
         RefillBoard();
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(refilDelay);
 
         while(MatchesOnBoard())
         {
             streakValue ++;
-            yield return new WaitForSeconds(.5f);
             DestroyMatches();
+            yield return new WaitForSeconds(2 * refilDelay);  
         }
         findMatches.currentMatches.Clear();
         currentDot = null;
-        yield return new WaitForSeconds(.5f);
+        
         if(IsDeadLocked())
         {
-            ShuffleBoard();
+            StartCoroutine(ShuffleBoard());
             Debug.Log("DeadLocked!!");
         }
+        yield return new WaitForSeconds(refilDelay);
         currentState = GameState.move;
         streakValue = 1;
     }
@@ -431,7 +456,7 @@ public class Board : MonoBehaviour
     {
         for(int i = 0; i < width; i++)
         {
-            for (int j = 0; j < heigth; j++)
+            for (int j = 0; j < height; j++)
             {
                 if(allDots[i,j]!= null)
                 {
@@ -448,7 +473,7 @@ public class Board : MonoBehaviour
 
                         }
                     } 
-                    if(j < heigth - 2)
+                    if(j < height - 2)
                     {
                         //Check if the dots above exist
                         if (allDots[i, j + 1] != null && allDots[i, j + 2] != null)
@@ -481,7 +506,7 @@ public class Board : MonoBehaviour
     {
         for(int i = 0; i < width; i++)
         {
-            for(int j = 0; j < heigth; j++)
+            for(int j = 0; j < height; j++)
             {
                 if(allDots[i,j] != null)
                 {
@@ -492,7 +517,7 @@ public class Board : MonoBehaviour
                             return false;
                         }
                     }
-                    if(j < heigth - 1)
+                    if(j < height - 1)
                     {
                         if(SwitchAndCheck(i,j, Vector2.up))
                         {
@@ -506,14 +531,15 @@ public class Board : MonoBehaviour
         return true;
     }
 
-    private void ShuffleBoard()
+    private IEnumerator ShuffleBoard()
     {
+        yield return new WaitForSeconds(0.5f);
         //Create a list of game objects
         List<GameObject> newBoard = new List<GameObject>();
         //Add every piece to this list
         for (int i = 0; i < width; i++)
         {
-            for (int j = 0; j < heigth; j++)
+            for (int j = 0; j < height; j++)
             {
                 if (allDots[i, j] != null)
                 {
@@ -521,10 +547,11 @@ public class Board : MonoBehaviour
                 }
             }
         }
+        yield return new WaitForSeconds(0.5f);
         //for every spot on the board...
         for (int i = 0; i < width; i++)
         {
-            for (int j = 0; j < heigth; j++)
+            for (int j = 0; j < height; j++)
             {
                 //if this spot shouldn't be blank
                 if (!blankSpaces[i,j])

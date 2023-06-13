@@ -15,7 +15,7 @@ public class CameraScaler : MonoBehaviour
         board = FindObjectOfType<Board>();
         if(board != null)
         {
-            RepositionCamera(board.width - 1, board.heigth - 1);
+            RepositionCamera(board.width - 1, board.height - 1);
         }
     }
 
@@ -23,13 +23,13 @@ public class CameraScaler : MonoBehaviour
     {
         Vector3 tempPosition = new Vector3(x/2, y/2 + yOffset, cameraOffset);
         transform.position = tempPosition;
-        if(board.width > board.heigth)
+        if(board.width > board.height)
         {
             Camera.main.orthographicSize = (board.width / 2 + padding) / aspectRatio;
         }
         else
         {
-            Camera.main.orthographicSize = board.heigth / 2 + padding;
+            Camera.main.orthographicSize = board.height / 2 + padding;
         }
     }
 

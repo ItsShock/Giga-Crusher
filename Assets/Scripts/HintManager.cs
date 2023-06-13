@@ -34,7 +34,7 @@ public class HintManager : MonoBehaviour
         List<GameObject> possibleMoves = new List<GameObject>();
         for (int i = 0; i < board.width; i++)
         {
-            for (int j = 0; j < board.heigth; j++)
+            for (int j = 0; j < board.height; j++)
             {
                 if (board.allDots[i, j] != null)
                 {
@@ -45,7 +45,7 @@ public class HintManager : MonoBehaviour
                             possibleMoves.Add(board.allDots[i, j]);
                         }
                     }
-                    if (j < board.heigth - 1)
+                    if (j < board.height - 1)
                     {
                         if (board.SwitchAndCheck(i, j, Vector2.up))
                         {

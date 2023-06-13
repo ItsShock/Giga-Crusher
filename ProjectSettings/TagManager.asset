@@ -13,6 +13,7 @@ TagManager:
   - Turquoise Dot
   - Yellow Dot
   - Purple Dot
+  - Color
   layers:
   - Default
   - TransparentFX
