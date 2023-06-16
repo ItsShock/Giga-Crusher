@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0afa333edf5aeeb469c09c7f959a25c4, type: 3}
+  m_Name: Level 1
+  m_EditorClassIdentifier: 
+  width: 7
+  height: 7
+  boardLayout: []
+  dots:
+  - {fileID: 2325671276514956360, guid: dd4f75cfc05049640938194215c9a930, type: 3}
+  - {fileID: 8889165473177862754, guid: d3287b91bb8a3514eaa93c3f00f4c7fd, type: 3}
+  - {fileID: 4799244285285355953, guid: 8130cb9d4930df246a2a26e8280682aa, type: 3}
+  - {fileID: 3849195932561494719, guid: 65bc418f6ee4051408f9a3d9554425d3, type: 3}
+  scoreGoals: 6400000090010000bc020000
+  endGameRequirements:
+    gameType: 0
+    counterValue: 60
+  levelGoals:
+  - numberNeeded: 10
+    numberCollected: 10
+    goalSprite: {fileID: 21300000, guid: 39d4b2cd0f50d4a4f97eaa45d9571b85, type: 3}
+    matchValue: Blue Dot

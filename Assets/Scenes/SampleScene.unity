@@ -2120,6 +2120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac854a9d7fb51f4e9519598dacd11b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  world: {fileID: 11400000, guid: 31c2e7df9a51ec749abbcaa98d4bae33, type: 2}
+  level: 2
   currentState: 1
   width: 6
   height: 6
@@ -2127,7 +2129,7 @@ MonoBehaviour:
   tilePrefab: {fileID: 7701898551299278847, guid: bb536e0cd7566e94fb55a10c2a7c3351, type: 3}
   breakableTilePrefab: {fileID: 4406092418094820576, guid: d10139acc25abf642a4cd24345c77529, type: 3}
   dots:
-  - {fileID: 6309100861578604959, guid: dd4f75cfc05049640938194215c9a930, type: 3}
+  - {fileID: 2325671276514956360, guid: dd4f75cfc05049640938194215c9a930, type: 3}
   - {fileID: 666153243626375919, guid: ad3cb14b7f842994eb5ca39096cdd629, type: 3}
   - {fileID: 4159042967645328052, guid: da666206dfcbfd84cb10b4b7fb9e5526, type: 3}
   - {fileID: 3849195932561494719, guid: 65bc418f6ee4051408f9a3d9554425d3, type: 3}
