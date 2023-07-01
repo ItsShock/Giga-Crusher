@@ -956,7 +956,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 390187615}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1480456705}
+        m_TargetAssemblyTypeName: BackToSplash, Assembly-CSharp
+        m_MethodName: OK
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &390187615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1181,7 +1193,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 475159059}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1480456705}
+        m_TargetAssemblyTypeName: BackToSplash, Assembly-CSharp
+        m_MethodName: OK
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &475159059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1926,8 +1950,8 @@ MonoBehaviour:
   levelGoals:
   - numberNeeded: 1
     numberCollected: 0
-    goalSprite: {fileID: 21300000, guid: 0331f29ca784c324397ec8f670bf7e70, type: 3}
-    matchValue: Breakable
+    goalSprite: {fileID: 2035813955, guid: 49cd84925969dc446bea95fe8e87fa69, type: 3}
+    matchValue: Blue Dot
   - numberNeeded: 3
     numberCollected: 0
     goalSprite: {fileID: 21300000, guid: 2894c1a9d617cc14ab4737b12b686451, type: 3}
@@ -2121,7 +2145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   world: {fileID: 11400000, guid: 31c2e7df9a51ec749abbcaa98d4bae33, type: 2}
-  level: 2
+  level: 1
   currentState: 1
   width: 6
   height: 6
@@ -2596,6 +2620,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1480456703}
   - component: {fileID: 1480456704}
+  - component: {fileID: 1480456705}
   m_Layer: 0
   m_Name: EndGameManager
   m_TagString: Untagged
@@ -2639,6 +2664,19 @@ MonoBehaviour:
     gameType: 0
     counterValue: 2
   currentCounterValue: 0
+--- !u!114 &1480456705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480456702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57626a91418e77046876daec3040fe17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: Splash
 --- !u!1 &1481714812
 GameObject:
   m_ObjectHideFlags: 0
