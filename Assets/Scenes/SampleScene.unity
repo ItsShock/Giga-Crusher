@@ -959,7 +959,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1480456705}
         m_TargetAssemblyTypeName: BackToSplash, Assembly-CSharp
-        m_MethodName: OK
+        m_MethodName: WinOK
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1045,7 +1045,7 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 4
   m_Spacing: 2
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
@@ -1196,7 +1196,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1480456705}
         m_TargetAssemblyTypeName: BackToSplash, Assembly-CSharp
-        m_MethodName: OK
+        m_MethodName: LoseOK
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2803,7 +2803,7 @@ MonoBehaviour:
     m_Bottom: 15
   m_ChildAlignment: 4
   m_Spacing: 25
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
